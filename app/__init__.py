@@ -18,16 +18,8 @@ def create_app():
     migrate.init_app(app, db)
 
     from app.models import Usuario, Queue, Hospital
-
-    from app.routes.simulation_routes import simulation_bp
-    from app.routes.hospital_routes import hospital_bp
-    from app.routes.usuario_routes import usuario_bp
     from app.routes import register_routes
 
-    # ✅ Registrar Blueprints
-    app.register_blueprint(simulation_bp)
-    app.register_blueprint(hospital_bp)
-    app.register_blueprint(usuario_bp)
     register_routes(app)
 
     # ✅ Ruta base para evitar 404
