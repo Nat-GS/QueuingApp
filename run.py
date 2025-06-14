@@ -1,9 +1,6 @@
-from flask import Flask, send_from_directory, abort
-import os
+from app import create_app
 
-# Crear app directamente aquí (no con factory)
-app = Flask(__name__)
+app = create_app()
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
