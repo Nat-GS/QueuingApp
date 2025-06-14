@@ -5,7 +5,10 @@ from flask_migrate import Migrate
 import os
 from flask import Flask, send_from_directory, abort
 
- 
+@app.route('/')
+def index():
+    return jsonify({"message": "Servidor activo"}), 200
+
 db = SQLAlchemy()
 migrate = Migrate()
 
