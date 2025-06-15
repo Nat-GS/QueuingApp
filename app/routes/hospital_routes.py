@@ -53,3 +53,26 @@ def list_hospitals():
         })
 
     return jsonify(result)
+
+
+@hospital_bp.route('/create', methods=['POST'])
+def create_hospital():
+    data = request.json
+    nombre = data.get('nombre')
+    ubicacion = data.get('ubicacion')
+
+    if not nombre or not ubicacion:
+        return jsonify({'error': 'Faltan campos requeridos'}), 400
+
+    nuevo = Hospital(nombre=nombre, ubicacion=ubicacion)
+    db.session.add(nuevo)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Hospital creado exitosamente',
+        'hospital': {
+            'id': nuevo.id_hospital,
+            'nombre': nuevo.nombre,
+            'ubicacion': nuevo.ubicacion
+        }
+    }), 201
