@@ -17,10 +17,18 @@ class UsuarioService:
         if usuario.contrasenia != contrasenia:
             return {"error": "Contraseña incorrecta"}, 401
 
-        token = jwt.encode({
-            'usuario_id': usuario.id_usuario,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
-        }, current_app.config['SECRET_KEY'], algorithm='HS256')
+        try:
+            token = jwt.encode({
+                'usuario_id': usuario.id_usuario,
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
+            }, current_app.config.get('SECRET_KEY', 'default_secret'), algorithm='HS256')
+
+            if isinstance(token, bytes):
+                token = token.decode('utf-8')  # Asegurar que sea string en Flask
+
+        except Exception as e:
+            return {"error": f"Error generando token: {str(e)}"}, 500
+
 
         return {
             "id_usuario": usuario.id_usuario,
