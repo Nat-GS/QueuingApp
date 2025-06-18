@@ -11,7 +11,7 @@ THIS_DIR      = os.path.dirname(__file__)
 APP_DIR       = os.path.abspath(os.path.join(THIS_DIR, '..'))
 OUTPUT_FOLDER = os.path.join(APP_DIR, 'output', 'simulations')
 
-hospital_bp = Blueprint('hospital', __name__, url_prefix='/hospitals')
+hospital_bp = Blueprint('hospital', __name__, url_prefix='/hospital')
 
 @hospital_bp.route('/', methods=['GET'])
 def list_hospitals():
