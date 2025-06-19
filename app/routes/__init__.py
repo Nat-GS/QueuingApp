@@ -8,5 +8,5 @@ from .hospital_routes import hospital_bp
 def register_routes(app):
     app.register_blueprint(usuario_bp, url_prefix='/usuario')
     app.register_blueprint(queue_bp, url_prefix='/queue')
-    app.register_blueprint(simulation_bp, url_prefix='/simulation')
+    app.register_blueprint(simulation_bp, url_prefix='/simulate')
     app.register_blueprint(hospital_bp, url_prefix='/hospital')
