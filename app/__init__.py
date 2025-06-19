@@ -11,7 +11,7 @@ def create_app():
     app = Flask(__name__)  # ✅ Definir app primero
 
     # Configuración de la app
-    CORS(app, resources={r"/*": {"origins": "https://flow-medic.netlify.app/"}}, supports_credentials=True)
+    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
     app.config.from_object('app.config.Config')
 
     db.init_app(app)
